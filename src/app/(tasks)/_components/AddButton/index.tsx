@@ -1,14 +1,13 @@
+import { useAddButtonHooks } from "./hooks";
+
 type AddButtonProps = {
-  onClick: (title: string) => void;
   title: string;
 };
 
-export const AddButton = ({ onClick, title }: AddButtonProps) => {
+export const AddButton = ({ title }: AddButtonProps) => {
+  const { addTask } = useAddButtonHooks({ title });
   return (
-    <button
-      className="border border-black text-black p-1"
-      onClick={() => onClick(title)}
-    >
+    <button className="border border-black text-black p-1" onClick={addTask}>
       Add
     </button>
   );

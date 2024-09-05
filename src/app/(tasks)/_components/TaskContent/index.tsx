@@ -14,12 +14,12 @@ type TaskContentProps = {
 };
 
 export const TaskContent = ({ tasks }: TaskContentProps) => {
-  const { onClick, title, onChange } = useTaskContentHooks();
+  const { title, onChange } = useTaskContentHooks();
   return (
     <>
       <div className="flex mt-20">
         <TaskInput onChange={onChange} title={title} />
-        <AddButton onClick={onClick} title={title} />
+        <AddButton title={title} />
       </div>
       <div className="flex flex-col w-full mt-3">
         {tasks.map((task, i) => (

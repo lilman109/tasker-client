@@ -2,23 +2,21 @@
 
 import { TaskContent } from "@/app/(tasks)/_components";
 import { useQuery } from "@tanstack/react-query";
+import axios from "axios";
 
 const TasksPage = () => {
   const { isFetching, data } = useQuery({
     queryKey: ["tasks"],
     queryFn: async () => {
-      if (!process.env.TASKS_URL) {
-        throw new Error("TASKS_URL is not defined");
-      }
-      const res = await fetch(process.env.TASKS_URL);
-      return res.json();
+      const res = await axios.get(process.env.TASKS_URL!);
+      return res.data;
     },
   });
 
   return (
     <div className="flex flex-col items-center h-screen">
       {isFetching && <h2>Loading...</h2>}
-      {!isFetching && <TaskContent tasks={data} />}
+      {!isFetching && data && <TaskContent tasks={data} />}
     </div>
   );
 };
