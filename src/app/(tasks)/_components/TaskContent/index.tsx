@@ -1,12 +1,20 @@
 "use client";
 
-import { TaskInput, TaskCard, AddButton } from "@/app/_components";
+import { TaskInput, TaskCard, AddButton } from "@/app/(tasks)/_components";
 import { useTaskContentHooks } from "./hooks";
 
-export const TaskContent = () => {
-  console.log("render");
-  const { tasks, onClick, title, onChange } = useTaskContentHooks();
+type Task = {
+  id: string;
+  title: string;
+  createdAt: string;
+};
 
+type TaskContentProps = {
+  tasks: Task[];
+};
+
+export const TaskContent = ({ tasks }: TaskContentProps) => {
+  const { onClick, title, onChange } = useTaskContentHooks();
   return (
     <>
       <div className="flex mt-20">

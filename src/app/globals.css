@@ -17,13 +17,13 @@
 }
 
 body {
-  color: rgb(var(--foreground-rgb));
   background: 228, 241, 254;
   height: 100vh; /* or h-screen */
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  color: black;
 }
 
 @layer utilities {
