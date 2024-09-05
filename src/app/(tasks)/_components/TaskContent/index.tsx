@@ -2,6 +2,7 @@
 
 import { TaskInput, TaskCard, AddButton } from "@/app/(tasks)/_components";
 import { useTaskContentHooks } from "./hooks";
+import { TaskForm } from "../TaskForm";
 
 type Task = {
   id: string;
@@ -18,8 +19,7 @@ export const TaskContent = ({ tasks }: TaskContentProps) => {
   return (
     <>
       <div className="flex mt-20">
-        <TaskInput onChange={onChange} title={title} />
-        <AddButton title={title} />
+        <TaskForm/>
       </div>
       <div className="flex flex-col w-full mt-3">
         {tasks.map((task, i) => (

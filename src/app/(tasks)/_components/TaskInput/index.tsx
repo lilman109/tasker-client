@@ -1,15 +1,21 @@
-type AddButtonProps = {
-  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  title: string;
-};
+import { Controller } from "react-hook-form";
+import { useTaskInputHooks } from "./hooks";
 
-export const TaskInput = ({ onChange, title }: AddButtonProps) => {
+export const TaskInput = () => {
+  const { control } = useTaskInputHooks();
+
   return (
-    <input
-      className="border border-black text-black p-1"
-      type="text"
-      onChange={onChange}
-      value={title}
+    <Controller
+      name="title"
+      control={control}
+      render={({ field: { onChange, value } }) => (
+        <input
+          className="border border-black text-black p-1"
+          type="text"
+          onChange={onChange}
+          value={value}
+        />
+      )}
     />
   );
 };

@@ -1,13 +1,14 @@
-import { useAddButtonHooks } from "./hooks";
-
 type AddButtonProps = {
-  title: string;
+  isValid: boolean;
+  isSubmitting: boolean;
 };
-
-export const AddButton = ({ title }: AddButtonProps) => {
-  const { addTask } = useAddButtonHooks({ title });
+export const AddButton = ({ isValid, isSubmitting }: AddButtonProps) => {
   return (
-    <button className="border border-black text-black p-1" onClick={addTask}>
+    <button
+      className="border border-black text-black p-1"
+      type="submit"
+      disabled={!isValid || isSubmitting}
+    >
       Add
     </button>
   );
