@@ -1,6 +1,6 @@
 "use client";
 
-import { TaskCard } from "@/app/(tasks)/_components";
+import { TaskCard } from "@/app/tasks/_components";
 import { TaskForm } from "../TaskForm";
 
 type Task = {

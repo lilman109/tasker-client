@@ -1,6 +1,6 @@
 "use client";
 
-import { TaskContent } from "@/app/(tasks)/_components";
+import { TaskContent } from "@/app/tasks/_components";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 

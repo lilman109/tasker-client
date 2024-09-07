@@ -1,4 +1,4 @@
-import { AddButton, TaskInput } from "@/app/(tasks)/_components";
+import { AddButton, TaskInput } from "@/app/tasks/_components";
 import { FormProvider } from "react-hook-form";
 import { useTaskFormHooks } from "./hooks";
 
