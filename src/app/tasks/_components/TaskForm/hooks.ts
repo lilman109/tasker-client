@@ -1,5 +1,5 @@
-import { TaskInputType } from "@/app/entities/schema/task-input/types";
-import { taskInputSchema } from "@/app/entities/schema/task-input/zodSchema";
+import { TaskInputType } from "@/entities/schema/task-input/types";
+import { taskInputSchema } from "@/entities/schema/task-input/zodSchema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import axios from "axios";
