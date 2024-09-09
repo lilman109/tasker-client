@@ -3,9 +3,11 @@ import { userCredentialsSchema } from "@/entities/schema/user-credentials/zodSch
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useMutation } from "@tanstack/react-query";
 import axios from "axios";
+import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 
 export const useSignInHooks = () => {
+  const router = useRouter();
   const useFormMethods = useForm<UserCredentialsType>({
     defaultValues: {
       username: "",
@@ -31,7 +33,7 @@ export const useSignInHooks = () => {
       return res.data;
     },
     onSuccess(data) {
-      console.log("User signed in successfully");
+      router.push("/tasks"); // Redirect to the TasksPage
     },
     onError(error) {
       console.error(error);
