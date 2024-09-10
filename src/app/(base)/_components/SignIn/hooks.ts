@@ -32,7 +32,7 @@ export const useSignInHooks = () => {
       });
       return res.data;
     },
-    onSuccess(data) {
+    onSuccess() {
       router.push("/tasks"); // Redirect to the TasksPage
     },
     onError(error) {

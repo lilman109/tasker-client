@@ -4,6 +4,7 @@ import { useQuery } from "@tanstack/react-query";
 import SignIn from "./_components/SignIn";
 import SignUp from "./_components/SignUp";
 import { useRouter } from "next/navigation";
+import axios from "axios";
 
 const HomePage = () => {
   const router = useRouter();
