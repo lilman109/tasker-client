@@ -1,8 +1,8 @@
 import { TaskInputType } from "@/entities/schema/task-input/types";
 import { taskInputSchema } from "@/entities/schema/task-input/zodSchema";
+import { useCreateTaskMutation } from "@/generated/graphql";
+import client from "@/lib/apollo-client";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useMutation, useQueryClient } from "@tanstack/react-query";
-import axios from "axios";
 import { useForm } from "react-hook-form";
 
 export const useTaskFormHooks = () => {
@@ -16,29 +16,31 @@ export const useTaskFormHooks = () => {
 
   const {
     handleSubmit,
-    formState: { isValid, isSubmitting },
+    formState: { isValid },
+    reset,
   } = useFormMethods;
 
-  const queryClient = useQueryClient();
-  const { mutate } = useMutation({
-    mutationFn: async (title: string) => {
-      return await axios.post(process.env.TASKS_URL!, { title });
-    },
-    onSuccess() {
-      queryClient.refetchQueries({ queryKey: ["tasks"] });
+  const [createTaskMutation, { loading }] = useCreateTaskMutation({
+    onCompleted: () => {
+      client.refetchQueries({ include: ["GetTasks"] });
     },
   });
 
   const onSubmit = async (data: TaskInputType) => {
     const { title } = data;
 
-    mutate(title);
+    try {
+      await createTaskMutation({ variables: { input: title } });
+      reset({ title: "" });
+    } catch (error) {
+      // Handle error
+    }
   };
 
   return {
     useFormMethods,
     isValid,
-    isSubmitting,
+    loading,
     onSubmit: handleSubmit(onSubmit),
   };
 };

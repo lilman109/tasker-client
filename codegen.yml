@@ -1,0 +1,13 @@
+overwrite: true
+schema: "http://localhost:3001/graphql"
+documents: "src/**/*.graphql"
+generates:
+  src/generated/graphql.tsx:
+    plugins:
+      - "typescript" # Generates TypeScript types based on the GraphQL schema
+      - "typescript-operations" # Generates TypeScript types for your queries and mutations
+      - "typescript-react-apollo" # Generates Apollo Client hooks for React
+    config:
+      withHooks: true # Ensures hooks like `useQuery`, `useMutation` are generated
+      withComponent: false
+      withHOC: false
